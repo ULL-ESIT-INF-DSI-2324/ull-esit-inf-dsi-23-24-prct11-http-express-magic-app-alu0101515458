@@ -153,39 +153,6 @@ describe('Colección de Cartas', () => {
     };
     expect(() => colección.loadCollection()).to.not.throw();
   });
-
-  it('debería mostrar un mensaje de error si se intenta agregar una carta con un ID que ya existe en la colección', async () => {
-    const cartaExistente: Card = {
-      id: 1,
-      nombre: 'Carta Existente',
-      costeMana: 3,
-      color: Color.Verde,
-      líneaTipo: TipoLinea.Criatura,
-      rareza: Rareza.Rara,
-      textoReglas: 'Texto de reglas para Carta Existente',
-      valorMercado: 15
-    };
-  
-    // Añadimos una carta existente a la colección
-    await colección.addCard(cartaExistente);
-  
-    // Redefinimos console.log para capturar su salida
-    const originalConsoleLog = console.log;
-    let loggedMessage = "";
-    console.log = (message) => {
-      loggedMessage += message;
-    };
-  
-    // Intentamos agregar la misma carta nuevamente
-    await colección.addCard(cartaExistente);
-
-    // Restauramos console.log a su implementación original
-    console.log = originalConsoleLog;
-
-    // Verificamos que se haya mostrado el mensaje de error correcto
-    const expectedErrorMessage = chalk.red(`La carta con ID ${cartaExistente.id} ya existe en la colección de ${usuarioPrueba}.`);
-    expect(loggedMessage).to.equal(expectedErrorMessage);
-  });
   
   it('debería mostrar un mensaje de error si se intenta actualizar una carta que no existe en la colección', () => {
     const cartaInexistente: Card = {

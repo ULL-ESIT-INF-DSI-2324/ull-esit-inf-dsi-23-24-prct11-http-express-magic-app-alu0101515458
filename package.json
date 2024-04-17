@@ -7,7 +7,7 @@
   "scripts": {
     "start": "tsc-watch --onSuccess \"node dist/EJERCICIO-PE101/index.js\"",
     "doc": "typedoc",
-    "test": "c8 mocha",
+    "test": "mocha",
     "coverage": "c8 npm test && c8 report --reporter=lcov"
   },
   "keywords": [],
